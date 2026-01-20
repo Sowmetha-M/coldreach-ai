@@ -81,10 +81,8 @@ export async function generateMessage(input: z.infer<typeof InputSchema>): Promi
       try {
         // Try to extract JSON if it's wrapped in code blocks
         let jsonString = response.trim()
-        const jsonMatch = jsonString.match(/```json\s*(\{[\s\S]*?\})\s*```/)
-        if (jsonMatch) {
-          jsonString = jsonMatch[1]
-        }
+        // Remove markdown code blocks (with or without language specifier)
+        jsonString = jsonString.replace(/^```(?:json)?\s*/, '').replace(/\s*```$/, '')
         parsed = JSON.parse(jsonString)
       } catch (parseError) {
         console.error('JSON parse error:', parseError, 'Response:', response)
