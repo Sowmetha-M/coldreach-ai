@@ -1,0 +1,32 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Small global polish for typography and accessibility */
+:root {
+	--surface: 255 255 255;
+}
+
+html, body {
+	height: 100%;
+}
+
+body {
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+/* Make placeholder text slightly softer */
+::placeholder {
+	color: rgba(100, 116, 139, 1); /* slate-500 */
+}
+
+/* Respect reduced motion */
+@media (prefers-reduced-motion: reduce) {
+	* {
+		animation-duration: 0.001ms !important;
+		animation-iteration-count: 1 !important;
+		transition-duration: 0.01ms !important;
+		scroll-behavior: auto !important;
+	}
+}
